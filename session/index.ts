@@ -6,6 +6,7 @@ export type {
   Session,
   SessionAnswer,
   SessionStatus,
+  SessionRow,
 } from "./types";
 
 export {

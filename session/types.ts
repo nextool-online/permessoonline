@@ -24,3 +24,20 @@ export type Session = {
   stripePaymentIntentId?: string;
   paidAt?: string;
 };
+
+/**
+ * Representa exatamente uma linha da tabela "sessions" do Supabase.
+ * Nunca deve ser utilizada fora da camada de persistência.
+ */
+export type SessionRow = {
+  id: string;
+  status: SessionStatus;
+  answers: SessionAnswer[];
+  email: string | null;
+  case_id: string | null;
+  created_at: string;
+  updated_at: string;
+  stripe_checkout_id: string | null;
+  stripe_payment_intent_id: string | null;
+  paid_at: string | null;
+};
