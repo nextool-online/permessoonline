@@ -105,10 +105,21 @@ export async function POST(request: Request) {
       console.log("SESSION ENCONTRADA:");
       console.log(session);
 
+      
       session.status = "payment_approved";
-      session.updatedAt = new Date().toISOString();
 
-      await updateSession(session);
+session.updatedAt = new Date().toISOString();
+
+session.stripeCheckoutId = checkoutSession.id;
+
+session.stripePaymentIntentId =
+  typeof checkoutSession.payment_intent === "string"
+    ? checkoutSession.payment_intent
+    : checkoutSession.payment_intent?.id;
+
+session.paidAt = new Date().toISOString();
+
+await updateSession(session);
 
       console.log("SESSION ATUALIZADA COM SUCESSO");
     } catch (error) {
